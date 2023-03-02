@@ -29,12 +29,20 @@ code {
     border-radius: 20px;
 }
 .options {
-    background-color: #2c2c2e;
+    background-color: #2c2c2e!important;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 40px;
     width: 40px;
-    border-radius: 20px;
+    border-radius: 20px!important;
+    border: none!important;
+    justify-self: center;
+}
+.options:hover {
+    background-color: orange!important;
+}
+.selected {
+    background-color: #7c8898!important;
 }
 
