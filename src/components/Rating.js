@@ -1,14 +1,18 @@
 import { Modal, Button, Form } from 'react-bootstrap'
 import { useState, useEffect } from 'react'
+import ThankYou from './ThankYou.js'
 
 const Rating = (props) => {
     // Modal always showing
     const [rating, setRating] = useState(null)
     const [selected, setSelected] = useState("options")
     const [buttons, setButtons] = useState(null)
-    const showState = true
+    const [showThankYou, setShowThankYou] = useState(null)
+    const [showState, setShowState] = useState(true)
+
     const onSubmit = (e) => {
-        setRating()
+        setShowState(false)
+        setShowThankYou(true)
     }
 
     const onClick = (e) => {
@@ -42,7 +46,7 @@ const Rating = (props) => {
 
     return (
         <>
-            <Modal show={showState}>
+            <Modal show={showState} size="sm">
                 <Modal.Body className="modal-body">
                     <div className="circle">
                         <svg role="img" focusable="false" width="17" height="16" xmlns="http://www.w3.org/2000/svg"><title>Star Icon</title><path d="m9.067.43 1.99 4.031c.112.228.33.386.58.422l4.45.647a.772.772 0 0 1 .427 1.316l-3.22 3.138a.773.773 0 0 0-.222.683l.76 4.431a.772.772 0 0 1-1.12.813l-3.98-2.092a.773.773 0 0 0-.718 0l-3.98 2.092a.772.772 0 0 1-1.119-.813l.76-4.431a.77.77 0 0 0-.222-.683L.233 6.846A.772.772 0 0 1 .661 5.53l4.449-.647a.772.772 0 0 0 .58-.422L7.68.43a.774.774 0 0 1 1.387 0Z" fill="#FC7614"/></svg>
@@ -50,11 +54,17 @@ const Rating = (props) => {
                     <Modal.Title>How did we do?</Modal.Title>
                     <Form.Group>
                         <Form.Label>Please let us know how we did with your support request. All feedback is appreciated to help us improve our offering!</Form.Label>
-                        { buttons }
-                        <Button type="submit" onClick={onSubmit}></Button>
+                        <div className="option-div">
+                            { buttons }
+                        </div>
+                        <Button type="submit" onClick={onSubmit} className="submit">SUBMIT</Button>
                     </Form.Group>
                 </Modal.Body>
             </Modal>
+            <ThankYou
+                show={showThankYou}
+                rating={rating}
+            />
         </>
     )
 }   
